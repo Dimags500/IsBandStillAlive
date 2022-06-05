@@ -19,9 +19,7 @@ useEffect(() => {
 }, [props.data])
 
 
-const setValue = (data) =>{
-
-
+const setValues = (data) =>{
     setItem({name : name.current.value , start: start.current.value , end : end.current.value})
 }
 
@@ -47,14 +45,15 @@ function isStringCheck (input){
     return(
         <div>
             <div>
-                <input type="text"  onChange={()=>  {  if(isStringCheck(name.current.value))  setValue()   }}  value={item.name} ref={name}     readOnly={!edit}  />
-                <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValue() }}  value={item.start} ref={start}   readOnly={!edit}   />
-                <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValue() }}  value={item.end}  ref={end}      readOnly={!edit}  />
+                <span>{item.id}</span>
+                <input type="text"  onChange={()=>  {  if(isStringCheck(name.current.value))  setValues()   }}  value={item.name} ref={name}     readOnly={!edit}  />
+                <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValues() }}  value={item.start} ref={start}   readOnly={!edit}   />
+                <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValues() }}  value={item.end}  ref={end}      readOnly={!edit}  />
 
         
                 <button onClick={()=> setEdit(!edit)} >edit</button>
-                <button>delete</button>
-                <button >apllay</button>
+                <button onClick={()=> props.callbacks.deleteItem(item.id)}  >delete</button>
+                <button onClick={()=> props.callbacks.submitItem(item)}  >apllay</button>
 
             </div>
         </div>
