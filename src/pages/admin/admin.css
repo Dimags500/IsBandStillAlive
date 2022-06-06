@@ -1,0 +1,13 @@
+
+
+.btns{
+
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.new-item{
+
+    margin: 10px;
+}

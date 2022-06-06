@@ -1,11 +1,9 @@
 import react  , { useState ,useEffect , useRef} from "react"
 
 
-
-
 export const NewItem = (props) =>{
 
-    const initState =  { id : 0  ,name: '' , start: '' , end: ''}
+    const initState =  {name: '' , years : []}
     const [item , setItem] = useState(initState)
 
     const name  = useRef(item.name);
@@ -15,7 +13,9 @@ export const NewItem = (props) =>{
 
 
 const setValues = () =>{
-    setItem({name : name.current.value , start: start.current.value , end : end.current.value})
+
+    setItem({ name : name.current.value , years :[ start.current.value ,end.current.value ]})
+
 }
 
 function isNmberCheck (input){
