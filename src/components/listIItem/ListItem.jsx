@@ -1,4 +1,5 @@
 import react  , { useState ,useEffect , useRef} from "react"
+import'./listitem.css'
 
 
 
@@ -19,8 +20,8 @@ useEffect(() => {
 }, [props.data])
 
 
-const setValues = (data) =>{
-    setItem({name : name.current.value , start: start.current.value , end : end.current.value})
+const setValues = () =>{
+    setItem({ id: item.id ,name : name.current.value , years :[ start.current.value ,end.current.value ]})
 }
 
 function isNmberCheck (input){
@@ -44,17 +45,27 @@ function isStringCheck (input){
 }
     return(
         <div>
-            <div>
-                <span>{item.id}</span>
-                <input type="text"  onChange={()=>  {  if(isStringCheck(name.current.value))  setValues()   }}  value={item.name} ref={name}     readOnly={!edit}  />
-                <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValues() }}  value={item.start} ref={start}   readOnly={!edit}   />
-                <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValues() }}  value={item.end}  ref={end}      readOnly={!edit}  />
+            <div className="list-item">
 
-        
-                <button onClick={()=> setEdit(!edit)} >edit</button>
+                <div>
+                <span>{item.id}</span>
+
+                </div>
+                <div>
+                <input type="text"  onChange={()=>  {  if(isStringCheck(name.current.value))  setValues()   }}  value={item.name} ref={name}    readOnly={!edit}  />
+                <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValues() }}  value={item.years[0]?? 0 } ref={start}   readOnly={!edit}   />
+                <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValues() }}  value={item.years[1] ?? 0}  ref={end}    readOnly={!edit}  />
+
+                </div>
+              
+
+        <div>
+        <button onClick={()=> setEdit(!edit)} >edit</button>
                 <button onClick={()=> props.callbacks.deleteItem(item.id)}  >delete</button>
                 <button onClick={()=> props.callbacks.submitItem(item)}  >apllay</button>
 
+        </div>
+              
             </div>
         </div>
     );

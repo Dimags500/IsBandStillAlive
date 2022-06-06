@@ -1,21 +1,39 @@
 import axios, { Axios } from "axios";
 
-export const getData = async () => {
-  const url = "https://6299d48a7b866a90ec439e21.mockapi.io/heavy_metal";
+const BASE_URL = "https://6299d48a7b866a90ec439e21.mockapi.io/";
+const CATEGORY = "heavy_metal";
 
-  return await await axios.get(url);
+export const getData = async () => {
+  try {
+    return await axios.get(BASE_URL + CATEGORY);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const postData = async (data) => {
-  const url = "https://6299d48a7b866a90ec439e21.mockapi.io/heavy_metal";
-
-  const res = await axios.post(url, data);
-  console.log(res);
+  try {
+    const res = await axios.post(BASE_URL + CATEGORY, data);
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const putData = async (id, data) => {
-  const url = "https://6299d48a7b866a90ec439e21.mockapi.io/heavy_metal/id";
+  try {
+    const res = await axios.put(BASE_URL + CATEGORY + "/" + id, data);
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-  const res = await axios.put(url, data);
-  console.log(res);
+export const deleteData = async (id) => {
+  try {
+    const res = await axios.delete(BASE_URL + CATEGORY + "/" + id);
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
 };
