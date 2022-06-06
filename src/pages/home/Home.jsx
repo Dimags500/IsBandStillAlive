@@ -4,5 +4,5 @@
 export const Home = () =>{
 
 
-    return <>Admin</>
+    return <>Home</>
 }

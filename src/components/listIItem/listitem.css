@@ -6,3 +6,10 @@
     flex-wrap: wrap;
     margin-bottom: 5px;
 }
+
+input{
+    width: 70px;
+}
+input:nth-child(1){
+    width: 150px;
+}
