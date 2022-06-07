@@ -1,4 +1,5 @@
 import react  , { useState ,useEffect , useRef} from "react"
+import {getYearsByName1 ,getYearsByName2} from '../../services/api//requests'
 import'./listitem.css'
 
 
@@ -12,6 +13,8 @@ export const ListItem = (props) =>{
     const name  = useRef(item.name);
     const start  = useRef(item.start);
     const end= useRef(item.end);
+    const activeYears = useRef('text');
+
 
 useEffect(() => {
 
@@ -22,6 +25,16 @@ useEffect(() => {
 
 const setValues = () =>{
     setItem({ id: item.id ,name : name.current.value , years :[ start.current.value ,end.current.value ]})
+}
+
+const getYears = async (source)=> {
+    if(source === 1){
+        activeYears.current.value = await getYearsByName1(item.name)
+    }
+    if(source === 2){
+        activeYears.current.value = await getYearsByName2(item.name)
+
+    }
 }
 
 function isNmberCheck (input){
@@ -60,11 +73,21 @@ function isStringCheck (input){
               
 
         <div>
-        <button onClick={()=> setEdit(!edit)} >edit</button>
+                <button onClick={()=> setEdit(!edit)} >edit</button>
                 <button onClick={()=> props.callbacks.deleteItem(item.id)}  >delete</button>
                 <button onClick={()=> props.callbacks.submitItem(item)}  >apllay</button>
+         
+
+
 
         </div>
+
+        <div className="get-years">
+            <button  onClick={ () => {getYears(1)}}> metal-archives </button>
+            <button  onClick={ () => {getYears(2)}}> last.fm </button>
+        </div>
+
+            <textarea ref={activeYears} name="" id="" >{activeYears.current.value}</textarea>
               
             </div>
         </div>

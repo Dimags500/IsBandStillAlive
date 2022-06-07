@@ -49,11 +49,12 @@ const createItem = async (info)=>{
                         <button  onClick={()=> getDataFormDb('heavy_metal')}>Heavy-Metal</button>
                         <button onClick={()=> setCurrData(data2)} >Rock</button>
                     </div>
-                
+                    <button onClick={ ()=> setnewItem(!newItem)} >New Item</button>
+
                   </div>
 
+
                   <div className="new-item" >
-                             <button onClick={ ()=> setnewItem(!newItem)} >New Item</button>
                              { newItem ?  <NewItem callback={createItem}  />   : null}
                     </div>
                 <div> <List data={currData} /> </div>

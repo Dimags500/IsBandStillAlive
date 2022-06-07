@@ -6,8 +6,8 @@ import "./navbar.css";
 
 export const NavBar = () => {
   return (
-    <div className="navbar">
-      <div>
+    <div>
+      <div className="navbar">
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -19,9 +19,10 @@ export const NavBar = () => {
             <Link to="/admin">Admin</Link>
           </li>
         </ul>
+      </div>
 
-        <hr />
-
+      <hr />
+      <div>
         <Switch>
           <Route exact path="/" component={Home} />
 
