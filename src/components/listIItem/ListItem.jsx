@@ -53,8 +53,8 @@ function isStringCheck (input){
                 </div>
                 <div>
                 <input type="text"  onChange={()=>  {  if(isStringCheck(name.current.value))  setValues()   }}  value={item.name} ref={name}    readOnly={!edit}  />
-                <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValues() }}  value={item.years[0]?? 0 } ref={start}   readOnly={!edit}   />
-                <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValues() }}  value={item.years[1] ?? 0}  ref={end}    readOnly={!edit}  />
+                <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValues() }}  value={item.years[0]?? 2000 } ref={start}   readOnly={!edit}   />
+                <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValues() }}  value={item.years[1] ?? 2020}  ref={end}    readOnly={!edit}  />
 
                 </div>
               
