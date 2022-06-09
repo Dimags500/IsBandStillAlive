@@ -44,7 +44,7 @@ export const createItemByName = (category, name, data) => {
 };
 
 export const updateItemByName = (category, name, data) => {
-  update(ref(db, `/Music/${category}/${name} `), {
+  update(ref(db, `/Music/${category}/${name}`), {
     name: data.name,
     years: data.years,
     id: data.id,
@@ -57,7 +57,7 @@ export const updateItemByName = (category, name, data) => {
 
 export async function deleteItemByName(category, name, data) {
   try {
-    remove(ref(db, `/Music/${category}/"${name}`), {
+    remove(ref(db, `/Music/${category}/${name}`), {
       name: data.name,
       years: data.years,
       id: data.id,
@@ -70,17 +70,17 @@ export async function deleteItemByName(category, name, data) {
 }
 
 export async function getItemByName(category, name) {
-  const dbref = ref(db, `/Music/${category}/"${name} `);
+  const path = `/Music/${category}/${name}`;
+  console.log(path);
+  const dbref = ref(db, path);
 
-  let item = {};
-  get(child(dbref))
+  return get(dbref)
     .then((snapshot) => {
       if (snapshot.exists()) {
-        item = snapshot.val();
+        return snapshot.val();
       } else {
         console.log("no data found ");
       }
     })
     .catch((error) => console.log("firebase error" + error));
-  return item;
 }

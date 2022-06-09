@@ -45,15 +45,32 @@ export class Home extends React.Component {
 
       }
     
- 
+     async structureData(dataFromDb){
+
+        let data = dataFromDb.data.sort((a,b) => a.data.id -b.data.id)
+        let newArr =  [] ;
+        data.forEach(item => {
+         let temp = item.data ;
+           if( parseInt(temp.years[0]) >= parseInt(temp.years[1]) ){
+             temp.years = ["0" ,"0"]
+           }
+          newArr.push ([temp.name ,new Date(parseInt(temp.years[0]) , 0 , 0) , new Date(parseInt(temp.years[1]) , 0 , 0)] );
+     
+        })
+        return newArr
+      }
+
     async loadData(category) {
       this.setState({ loading : true });
 
       const data = await getCategoryByName(category) ;
       const sorted = data.sort((a,b) => a.data.id -b.data.id) ;
+      // const structured = await this.structureData(data);
       this.setState({ data : sorted, loading : false });
 
     }
+
+ 
         
 
 render(){
