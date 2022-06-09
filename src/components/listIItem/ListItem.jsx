@@ -1,5 +1,5 @@
 import react  , { useState ,useEffect , useRef} from "react"
-import {getYearsByName1 ,getYearsByName2} from '../../services/api//requests'
+import {getYearsByName1 ,getYearsByName2 , getYearsByName3} from '../../services/api//requests'
 import'./listitem.css'
 
 
@@ -36,8 +36,11 @@ const getYears = async (source)=> {
     }
     if(source === 2){
         activeYears.current.value = await getYearsByName2(item.name)
-
     }
+    if(source === 3){
+        activeYears.current.value = await getYearsByName3(item.name)
+    }
+    
 }
 
 function isNmberCheck (input){
@@ -88,6 +91,8 @@ function isStringCheck (input){
         <div className="get-years">
             <button  onClick={ () => {getYears(1)}}> metal-archives </button>
             <button  onClick={ () => {getYears(2)}}> last.fm </button>
+            <button  onClick={ () => {getYears(3)}}> wikipedia </button>
+
         </div>
 
             <textarea ref={activeYears} name="" id="" >{activeYears.current.value}</textarea>
