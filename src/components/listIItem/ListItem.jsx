@@ -24,11 +24,14 @@ useEffect(() => {
 
 
 const setValues = () =>{
-    setItem({ id: item.id ,name : name.current.value , years :[ start.current.value ,end.current.value ]})
+    let newData = { id: item.id ,name : item.name , years :[ start.current.value ,end.current.value ]} ;
+    console.log(newData);
+    setItem(newData)
 }
 
 const getYears = async (source)=> {
     if(source === 1){
+        
         activeYears.current.value = await getYearsByName1(item.name)
     }
     if(source === 2){
@@ -65,7 +68,7 @@ function isStringCheck (input){
 
                 </div>
                 <div>
-                <input type="text"  onChange={()=>  {  if(isStringCheck(name.current.value))  setValues()   }}  value={item.name} ref={name}    readOnly={!edit}  />
+                <input type="text"  value={item.name}   readOnly={true}  />
                 <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValues() }}  value={item.years[0]?? 2000 } ref={start}   readOnly={!edit}   />
                 <input type="text"  onChange={()=> {  if(isNmberCheck(name.current.value))  setValues() }}  value={item.years[1] ?? 2020}  ref={end}    readOnly={!edit}  />
 
@@ -74,8 +77,8 @@ function isStringCheck (input){
 
         <div>
                 <button onClick={()=> setEdit(!edit)} >edit</button>
-                <button onClick={()=> props.callbacks.deleteItem(item.id)}  >delete</button>
-                <button onClick={()=> props.callbacks.submitItem(item)}  >apllay</button>
+                <button onClick={()=> props.callbacks.deleteItem(item)}  >delete</button>
+                <button onClick={()=> props.callbacks.updateItem(item)}  >update</button>
          
 
 
