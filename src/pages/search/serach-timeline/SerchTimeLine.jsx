@@ -29,6 +29,7 @@ export default function SerchTimeLine (props) {
   const  options = {
     allowHtml: true,
     height: 630 ,
+    
     colors: ['purple', 'blue', 'red', 'green', 'orange', 'gray'] ,
         timeline: { rowLabelStyle: { fontSize: 13 }, barLabelStyle: { fontSize: 6 } },
   };

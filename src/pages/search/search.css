@@ -3,3 +3,29 @@
     display: flex;
     justify-content: center;
 }
+
+.container *{
+    margin-left: 10px;
+}
+
+
+
+
+.btns{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.timeline{
+   
+    width: 70%;
+    margin: auto;
+}
+
+button{
+    margin-left: 10px;
+}
+
+#search-input{
+    width: 100px;
+}

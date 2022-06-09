@@ -1,13 +1,5 @@
 import { StartFirebase } from "../config/firebase";
-import {
-  get,
-  child,
-  remove,
-  set,
-  ref,
-  onValue,
-  update,
-} from "firebase/database";
+import { get, remove, set, ref, onValue, update } from "firebase/database";
 
 const db = StartFirebase();
 
@@ -71,7 +63,6 @@ export async function deleteItemByName(category, name, data) {
 
 export async function getItemByName(category, name) {
   const path = `/Music/${category}/${name}`;
-  console.log(path);
   const dbref = ref(db, path);
 
   return get(dbref)

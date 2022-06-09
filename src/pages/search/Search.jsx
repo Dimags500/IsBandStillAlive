@@ -10,6 +10,7 @@ export const Search =() =>{
 
     const initState = ['name' ,  new Date(1960, 0,0),   new Date(2022, 0 ,0)] ;
     const [input , setInput] = useState('');
+    const [category , setCategory] = useState('Heavy-Metal') ;
     const [data , setData] = useState([]);
 
 
@@ -17,7 +18,12 @@ export const Search =() =>{
    async function searchData(){
  
     const term =  inputValidation(input);
-    const res = await getItemByName('Heavy-Metal' ,term ) ;
+    const res = await getItemByName(category ,term ) ;
+    
+    if(res === undefined){
+        alert('no data , try to switch category')
+    }
+
     const newItem = formatData(res) ;
     const newData = [...data, newItem] 
 
@@ -34,7 +40,6 @@ export const Search =() =>{
     }
 
     const inputValidation = (input) => {
-
        
         if (typeof input === 'string' || input instanceof String ){
            
@@ -46,15 +51,23 @@ export const Search =() =>{
             }
         }
     }
+
+
     return(
         <>
         <div >
+                     <div  className='btns'>
+                        <button onClick={()=> { setCategory('Heavy-Metal')}} >Heavy-Metal</button>
+                        <button onClick={()=> {setCategory('Hard-Rock')}} >Hard-Rock</button>
+                        <button onClick={()=> { setCategory('Rock')}} >Rock</button>
+                    </div>
                 <div className="container">
-                <input onChange={ (e) => setInput(e.target.value)} />
-                <button   onClick={(e)=> searchData()}>Search</button>
+                <button onClick={(e)=> setData([])}>Reset</button>
+                <input id="search-input" onChange={ (e) => setInput(e.target.value)} />
+                <button onClick={(e)=> searchData()}>Search</button>
                 </div>
 
-                <div className="container">
+                <div className="timeline">
                     <SerchTimeLine data={data} />
                 </div>
         </div>
